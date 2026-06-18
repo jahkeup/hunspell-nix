@@ -40,6 +40,17 @@
         }
       );
 
+      overlays = {
+        default = prev: final: {
+          mkHunspellDictionary = prev.callPackage ./pkgs/hunspell-dictionary { };
+
+          cloud-services = final.mkHunspellDictionary {
+            name = "cloud-services";
+            termsSrc = ./terms/cloud-services/terms.txt;
+          };
+        };
+      };
+
       legacyPackages = forEachSupportedSystem (
         { pkgs, system }:
         {
@@ -52,10 +63,7 @@
         {
           cloud-services = self.outputs.legacyPackages.${system}.mkHunspellDictionary {
             name = "cloud-services";
-            terms = [
-              "EC2"
-              "S3"
-            ];
+            termsSrc = ./terms/cloud-services/terms.txt;
           };
 
           demo-hunspell = pkgs.hunspell.withDicts (d: [ self.outputs.packages.${system}.cloud-services ]);

@@ -25,6 +25,9 @@ SFX C   0   ing  [^e]
 SFX C   e   ing  e
 EOF
 
+# TODO: replace this with a more robust but equally naive approach
+# TODO: support pass-through flagging
+
 # ── Generate .dic with auto-flagging ──────────────────────────────────
 count=$(grep -cv '^\s*$\|^#' "$INPUT")
 {

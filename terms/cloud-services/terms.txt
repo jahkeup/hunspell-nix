@@ -1,0 +1,11 @@
+AWS
+Azure
+GCP
+Hetzner
+OCI
+S3
+k8s
+EKS
+GKE
+EC2
+CFN
